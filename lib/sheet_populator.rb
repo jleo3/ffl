@@ -11,16 +11,18 @@ module FFN
       @rb_worksheet = RBWorksheet.new(
                         doc.worksheets[1],
                         average_draft_positions)
+
+      @wr_worksheet = WRWorksheet.new(
+                        doc.worksheets[2],
+                        average_draft_positions)
     end
 
     def populate
-      @qb_worksheet.populate_column_headers
-      @qb_worksheet.populate_players
-      @qb_worksheet.save
-
-      @rb_worksheet.populate_column_headers
-      @rb_worksheet.populate_players
-      @rb_worksheet.save
+      [@qb_worksheet, @rb_worksheet, @wr_worksheet].each do |ws|
+        ws.populate_column_headers
+        ws.populate_players
+        ws.save
+      end
     end
 
   end

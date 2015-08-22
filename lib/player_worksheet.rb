@@ -20,8 +20,8 @@ module FFN
     def populate_ranking(player, row_index, column_index)
       player_ranking = @adp.detect { |r| r.player_id == player.player_id }
       if !!player_ranking
-        @worksheet[row_index+2,column_index] = player_ranking.position_rank
-        @worksheet[row_index+2,column_index+1] = player_ranking.overall_rank
+        @worksheet[row_index+2,column_index] = player_ranking.overall_rank
+        @worksheet[row_index+2,column_index+1] = player_ranking.position_rank
       end
     end
 

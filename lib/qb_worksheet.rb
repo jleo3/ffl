@@ -10,7 +10,7 @@ module FFN
       @headers = [
         "ID", "Player", "Team", "Completions", "Passing Yards",
         "Passing TDs", "INT", "Rush Yards", "Rush TDs",
-        "Fumbles Lost", "Position Rank", "Overall Rank"
+        "Fumbles Lost", "Overall Rank", "Position Rank"
       ]
       @values = [
         :player_id, :display_name, :team, :completions,

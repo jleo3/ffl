@@ -15,10 +15,15 @@ module FFN
       @wr_worksheet = WRWorksheet.new(
                         doc.worksheets[2],
                         average_draft_positions)
+
+      @te_worksheet = TEWorksheet.new(
+                        doc.worksheets[3],
+                        average_draft_positions)
     end
 
     def populate
-      [@qb_worksheet, @rb_worksheet, @wr_worksheet].each do |ws|
+      [@qb_worksheet, @rb_worksheet,
+       @wr_worksheet, @te_worksheet].each do |ws|
         ws.populate_column_headers
         ws.populate_players
         ws.save

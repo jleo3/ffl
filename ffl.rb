@@ -2,6 +2,7 @@ require_relative "lib/player_worksheet"
 require_relative "lib/qb_worksheet"
 require_relative "lib/rb_worksheet"
 require_relative "lib/wr_worksheet"
+require_relative "lib/te_worksheet"
 require_relative "lib/sheet_populator"
 require_relative "lib/google_api_wrapper"
 

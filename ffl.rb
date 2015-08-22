@@ -1,3 +1,4 @@
+require_relative "lib/player_worksheet"
 require_relative "lib/rb_worksheet"
 require_relative "lib/qb_worksheet"
 require_relative "lib/sheet_populator"

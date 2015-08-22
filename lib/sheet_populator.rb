@@ -2,8 +2,15 @@ module FFN
   class SheetPopulator
 
     def initialize(doc)
-      @qb_worksheet = QBWorksheet.new(doc.worksheets[0])
-      @rb_worksheet = RBWorksheet.new(doc.worksheets[1])
+      average_draft_positions = FFNerd.ppr_draft_rankings
+
+      @qb_worksheet = QBWorksheet.new(
+                        doc.worksheets[0],
+                        average_draft_positions)
+
+      @rb_worksheet = RBWorksheet.new(
+                        doc.worksheets[1],
+                        average_draft_positions)
     end
 
     def populate

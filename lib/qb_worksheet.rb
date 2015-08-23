@@ -1,31 +1,24 @@
 module FFN
   class QBWorksheet < PlayerWorksheet
 
-    def initialize(worksheet, average_draft_positions)
-      @worksheet = worksheet
-      @adp = average_draft_positions.select { |x| x.position == "QB" }
+    def initialize(position, worksheet, average_draft_positions)
+      super(position, worksheet, average_draft_positions)
 
-      @worksheet.title = "QB"
-      @projections = FFNerd.draft_projections("QB")
-      @headers = [
-        "ID", "Player", "Team", "Completions", "Passing Yards",
-        "Passing TDs", "INT", "Rush Yards", "Rush TDs",
-        "Fumbles Lost", "Overall Rank", "Position Rank"
-      ]
-      @values = [
-        :player_id, :display_name, :team, :completions,
-        :passing_yards, :passing_td, :passing_int,
-        :rush_yards, :rush_td, :fumbles
-      ]
+      @ranking_column_start = 11
+      @headers = display_headers + qb_headers + ranking_headers
+      @values = display_values + qb_values
     end
 
+    private
 
-    def populate_players
-      @projections.count.times do |i|
-        player = @projections[i]
-        populate_stats(player, i)
-        populate_ranking(player, i, 11)
-      end
+    def qb_headers
+      ["Completions", "Passing Yards", "Passing TDs", "INT",
+       "Rush Yards", "Rush TDs", "Fumbles Lost"]
+    end
+
+    def qb_values
+      [:completions, :passing_yards, :passing_td, :passing_int,
+       :rush_yards, :rush_td, :fumbles]
     end
 
   end

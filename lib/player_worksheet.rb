@@ -1,8 +1,26 @@
 module FFN
   class PlayerWorksheet
 
+    attr_reader :position
+
+    def initialize(position, worksheet, average_draft_positions)
+      @position = position
+      @adp = average_draft_positions.select { |x| x.position == position }
+      @projections = FFNerd.draft_projections(position)
+      @worksheet = worksheet
+      @worksheet.title = position
+    end
+
     def save
       @worksheet.save
+    end
+
+    def populate_players
+      @projections.count.times do |i|
+        player = @projections[i]
+        populate_stats(player, i)
+        populate_ranking(player, i, @ranking_column_start)
+      end
     end
 
     def populate_column_headers
@@ -25,6 +43,17 @@ module FFN
       end
     end
 
+    def display_headers
+      ["ID", "Player", "Team"]
+    end
+
+    def display_values
+      [:player_id, :display_name, :team]
+    end
+
+    def ranking_headers
+      ["Overall ADP", "Poition ADP"]
+    end
   end
 end
 

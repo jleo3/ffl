@@ -4,16 +4,9 @@ module FFN
     def initialize(position, worksheet, average_draft_positions)
       super(position, worksheet, average_draft_positions)
 
+      @ranking_column_start = 10
       @headers = display_headers + te_headers + ranking_headers
       @values = display_values + te_values
-    end
-
-    def populate_players
-      @projections.count.times do |i|
-        player = @projections[i]
-        populate_stats(player, i)
-        populate_ranking(player, i, 10)
-      end
     end
 
     private
@@ -24,8 +17,7 @@ module FFN
     end
 
     def te_values
-      [:rec, :rec_yards, :rec_td, :rush_yards,
-       :rush_td, :fumbles]
+      [:rec, :rec_yards, :rec_td, :rush_yards, :rush_td, :fumbles]
     end
 
   end

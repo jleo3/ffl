@@ -23,6 +23,6 @@ DOC_NAMES.each do |doc_name|
   sheets_doc = google_api_wrapper.retrieve_doc(doc_name)
   sheet_populator = FFN::SheetPopulator.new(sheets_doc)
   sheet_populator.populate
-  puts "Populating #{doc_name} complete!"
+  puts "\nPopulating #{doc_name} complete!"
 end
 

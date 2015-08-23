@@ -15,6 +15,14 @@ module FFN
       @worksheet.save
     end
 
+    def populate_players
+      @projections.count.times do |i|
+        player = @projections[i]
+        populate_stats(player, i)
+        populate_ranking(player, i, @ranking_column_start)
+      end
+    end
+
     def populate_column_headers
       @headers.each_with_index do |header, i|
         @worksheet[1,i+1] = header

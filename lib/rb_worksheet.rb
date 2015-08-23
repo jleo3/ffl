@@ -1,21 +1,11 @@
 module FFN
   class RBWorksheet < PlayerWorksheet
 
-    def initialize(worksheet, average_draft_positions)
-      @worksheet = worksheet
-      @adp = average_draft_positions.select { |x| x.position == "RB" }
+    def initialize(position, worksheet, average_draft_positions)
+      super(position, worksheet, average_draft_positions)
 
-      @worksheet.title = "RB"
-      @projections = FFNerd.draft_projections("RB")
-      @headers = [
-        "ID", "Player", "Team", "Rush Yards", "Rush TDs",
-        "Fumbles Lost", "Receptions", "Receiving Yards",
-        "Receiving TDs", "Overall Rank", "Position Rank"
-      ]
-      @values = [
-        :player_id, :display_name, :team, :rush_yards,
-        :rush_td, :fumbles, :rec, :rec_yards, :rec_td
-      ]
+      @headers = display_headers + rb_headers + ranking_headers
+      @values = display_values + rb_values
     end
 
     def populate_players
@@ -24,6 +14,17 @@ module FFN
         populate_stats(player, i)
         populate_ranking(player, i, 10)
       end
+    end
+
+    private
+
+    def rb_headers
+      ["Rush Yards", "Rush TDs", "Fumbles Lost", "Receptions",
+       "Receiving Yards", "Receiving TDs"]
+    end
+
+    def rb_values
+      [:rush_yards, :rush_td, :fumbles, :rec, :rec_yards, :rec_td]
     end
 
   end

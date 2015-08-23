@@ -1,29 +1,29 @@
 module FFN
   class DEFWorksheet < PlayerWorksheet
 
-    def initialize(worksheet, average_draft_positions)
-      @worksheet = worksheet
-      @adp = average_draft_positions.select { |x| x.position == "DEF" }
+    def initialize(position, worksheet, average_draft_positions)
+      super(position, worksheet, average_draft_positions)
 
-      @worksheet.title = "DEF"
-      @projections = FFNerd.draft_projections("DEF")
-      @headers = [
-        "ID", "Player", "Team",
-        "Sacks", "INT", "Fumble Rec", "TDs",
-        "Overall Rank", "Position Rank"
-      ]
-      @values = [
-        :player_id, :display_name, :team,
-        :sacks, :interceptions, :fumble_rec, :td
-      ]
+      @headers = display_headers + def_headers + ranking_headers
+      @values = display_values + def_values
     end
 
     def populate_players
       @projections.count.times do |i|
         player = @projections[i]
         populate_stats(player, i)
-        populate_ranking(player, i, 8)
+        populate_ranking(player, i, 9)
       end
+    end
+
+    private
+
+    def def_headers
+      ["Sacks", "INT", "Fumble Rec", "TDs", "Special Teams TD"]
+    end
+
+    def def_values
+      [:sacks, :interceptions, :fumble_rec, :td, :special_team_td]
     end
 
   end

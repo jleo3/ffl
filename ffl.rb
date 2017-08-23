@@ -13,8 +13,7 @@ require "fantasy_football_nerd"
 
 Dotenv.load
 FFNerd.api_key = ENV["FFNERD_API_KEY"]
-DOC_NAMES = [#"2015 Projections LOC",
-             "2015 Projections Boeing"]
+DOC_NAMES = ["2017 Projections LOC"]
 google_api_wrapper = FFN::GoogleAPIWrapper.new
 google_api_wrapper.login
 

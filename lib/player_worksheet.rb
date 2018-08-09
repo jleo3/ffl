@@ -52,7 +52,7 @@ module FFN
     end
 
     def ranking_headers
-      ["Overall ADP", "Poition ADP"]
+      ["Overall ADP", "Position ADP"]
     end
   end
 end

@@ -4,7 +4,6 @@ module FFN
   class GoogleAPIWrapper
     def login
       @session = GoogleDrive::Session.from_config("config.json")
-      puts @session
     end
 
     def retrieve_doc(filename)

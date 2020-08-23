@@ -13,7 +13,7 @@ require "fantasy_football_nerd"
 
 Dotenv.load
 FFNerd.api_key = ENV["FFNERD_API_KEY"]
-DOC_NAMES = ["2020 Projections Containment"]
+DOC_NAMES = ["2020 Projections LOC"]
 google_api_wrapper = FFN::GoogleAPIWrapper.new
 google_api_wrapper.login
 
